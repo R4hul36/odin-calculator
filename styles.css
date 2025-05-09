@@ -6,9 +6,12 @@
 
 body {
   /* background-color: aliceblue; */
+  font-family: sans-serif;
+  background-color:rgb(213, 226, 238);
 }
 
 h1 {
+  margin-top: 50px;
   font-weight: 700;
   text-align: center;
 }
@@ -29,7 +32,7 @@ h1 {
   background-color: white;
   border: 1px solid gray;
   border-radius:  10px;
-  margin-bottom: 5px;;
+  margin-bottom: 10px;;
 }
 
 .buttons {
@@ -53,22 +56,21 @@ h1 {
 button {
   border: none;
   border-radius: 20px;
+  padding: 14px;
+  font-weight: 700;
+  color:rgb(33, 31, 31);
+  font-size: 16px;
 }
 .btn-left button {
   width: 80px;
-  padding: 10px;
+  
 }
 
 .btn-right button {
   width: 100%;
-  padding: 10px;
-  background-color: rgb(154, 192, 224);
+  background-color: rgb(127, 185, 233);
 }
 
 #result {
   background-color: lightgreen
-}
-
-button:hover {
-  opacity: 100;
 }
