@@ -27,12 +27,12 @@ const operate = function (firstNum, operator, secondNum) {
   } else {
     result = divide(firstNum, secondNum)
   }
-  return result
+  return result.toFixed(2)
 }
 
-console.log(operate(2, '*', 5))
+console.log(operate(2, 'x', 5))
 
-let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',']
+let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.']
 let symbols = ['/', 'x', '-', '+']
 let firstNum = ''
 let operator = ''
@@ -47,8 +47,11 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
       symbols.includes(btn.textContent)
     ) {
       let result = operate(Number(firstNum), operator, Number(secondNum))
-      console.log(firstNum, operator, secondNum)
-      console.log(result)
+      displayContent(result)
+      firstNum = result
+      secondNum = ''
+      operator = btn.textContent
+      // console.log(result)
     } else if (numbers.includes(btn.textContent) && !operator) {
       firstNum += btn.textContent
     } else if (symbols.includes(btn.textContent)) {
@@ -56,12 +59,14 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
     } else if (firstNum && operator) {
       secondNum += btn.textContent
     }
+    displayContent(`${firstNum} ${operator} ${secondNum}`)
     // console.log(firstNum, operator, secondNum)
-    displayContent(btn.textContent)
   })
 })
 
 const displayContent = function (num) {
+  console.log(num)
+
   const displayContainer = document.querySelector('#display')
   displayContainer.textContent = num
 }
