@@ -17,8 +17,8 @@ const divide = function (firstNum, secondNum) {
 }
 
 const operate = function (firstNum, operator, secondNum) {
-  firstNum = Number(firstNum);
-  secondNum = Number(secondNum);
+  firstNum = Number(firstNum)
+  secondNum = Number(secondNum)
   let result
   if (operator === '+') {
     result = add(firstNum, secondNum)
@@ -29,12 +29,12 @@ const operate = function (firstNum, operator, secondNum) {
   } else {
     result = divide(firstNum, secondNum)
   }
-  return result;
+  return result
 }
 
 console.log(operate(2, 'x', 5))
 
-let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', "."]
+let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.']
 let symbols = ['/', 'x', '-', '+']
 let firstNum = ''
 let operator = ''
@@ -42,34 +42,34 @@ let secondNum = ''
 const buttons = document.querySelectorAll('.btn').forEach((btn) => {
   btn.addEventListener('click', (e) => {
     // console.log(typeof btn.textContent)
-    const btnText = btn.textContent;
+    const btnText = btn.textContent
 
     if (
-      (firstNum &&
-      secondNum &&
-      operator &&
-      symbols.includes(btnText)) || btnText === "=" 
+      (firstNum !== '' &&
+        secondNum !== '' &&
+        operator !== '' &&
+        symbols.includes(btnText)) ||
+      btnText === '='
     ) {
       let result = operate(firstNum, operator, secondNum)
       displayContent(result)
       firstNum = result
       secondNum = ''
-      operator = btnText === "=" ? "": btnText
+      operator = btnText === '=' ? '' : btnText
     } else if (numbers.includes(btnText) && !operator) {
-        if(firstNum.includes(".")){
-          if(btnText === "."){
-            return
-          }
+      if (firstNum.includes('.')) {
+        if (btnText === '.') {
+          return
         }
-        console.log('booooo');
-        
-        firstNum += btnText
-        
+      }
+      console.log('booooo')
+
+      firstNum += btnText
     } else if (symbols.includes(btnText)) {
       operator = btnText
-    } else if (firstNum  && operator) {
-      if(secondNum.includes(".")){
-        if(btnText === "."){
+    } else if (firstNum !== '' && operator !== '') {
+      if (secondNum.includes('.')) {
+        if (btnText === '.') {
           return
         }
       }
@@ -79,7 +79,6 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
     console.log(firstNum, operator, secondNum)
   })
 })
-
 
 const displayContent = function (num) {
   const displayContainer = document.querySelector('#display')
