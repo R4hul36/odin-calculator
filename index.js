@@ -16,6 +16,11 @@ const divide = function (firstNum, secondNum) {
   return firstNum / secondNum
 }
 
+const percentage = function (firstNum) {
+  return firstNum / 100
+}
+
+
 const operate = function (firstNum, operator, secondNum) {
   firstNum = Number(firstNum)
   secondNum = Number(secondNum)
@@ -26,8 +31,10 @@ const operate = function (firstNum, operator, secondNum) {
     result = subtract(firstNum, secondNum)
   } else if (operator === 'x') {
     result = multiply(firstNum, secondNum)
-  } else {
+  } else if (operator === "/"){
     result = divide(firstNum, secondNum)
+  }else {
+    result = percentage(firstNum)
   }
   return result
 }
@@ -35,7 +42,7 @@ const operate = function (firstNum, operator, secondNum) {
 console.log(operate(2, 'x', 5))
 
 let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.']
-let symbols = ['/', 'x', '-', '+']
+let symbols = ['/', 'x', '-', '+', "%"]
 let firstNum = ''
 let operator = ''
 let secondNum = ''
@@ -43,6 +50,26 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
   btn.addEventListener('click', (e) => {
     // console.log(typeof btn.textContent)
     const btnText = btn.textContent
+    let result = operate(firstNum, operator, secondNum)
+    if (btnText === "DE") {
+      if (secondNum !== '') {
+        secondNum = secondNum.slice(0, -1);
+      } else if (operator !== '') {
+        operator = '';
+      } else if (firstNum !== '') {
+        firstNum = firstNum.slice(0, -1);
+        console.log(firstNum);
+        
+      }
+      displayContent(`${firstNum} ${operator} ${secondNum}`);
+      return; 
+    }
+
+    if(btnText === "AC") {
+      firstNum = ''
+      operator = ''
+      secondNum = ''
+    }
 
     if (
       (firstNum !== '' &&
@@ -51,9 +78,9 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
         symbols.includes(btnText)) ||
       btnText === '='
     ) {
-      let result = operate(firstNum, operator, secondNum)
+      
       displayContent(result)
-      firstNum = result
+      firstNum = String(result)
       secondNum = ''
       operator = btnText === '=' ? '' : btnText
     } else if (numbers.includes(btnText) && !operator) {
@@ -62,8 +89,6 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
           return
         }
       }
-      console.log('booooo')
-
       firstNum += btnText
     } else if (symbols.includes(btnText)) {
       operator = btnText
@@ -75,10 +100,15 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
       }
       secondNum += btnText
     }
-    displayContent(`${firstNum} ${operator} ${secondNum}`)
+    if(btnText !== "DE") {
+      displayContent(`${firstNum} ${operator} ${secondNum}`)
+    } 
+    
     console.log(firstNum, operator, secondNum)
   })
 })
+
+
 
 const displayContent = function (num) {
   const displayContainer = document.querySelector('#display')
