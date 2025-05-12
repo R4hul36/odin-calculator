@@ -50,7 +50,7 @@ const buttons = document.querySelectorAll('.btn').forEach((btn) => {
     const btnText = btn.textContent
     let result = operate(firstNum, operator, secondNum)
 
-    if (btnText === 'RESET') {
+    if (btnText === 'AC') {
       firstNum = ''
       operator = ''
       secondNum = ''
