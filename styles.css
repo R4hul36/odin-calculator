@@ -6,16 +6,15 @@
 
 body {
   /* background-color: aliceblue; */
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: rgb(220, 229, 233);
   font-variant-numeric: slashed-zero;
-  
 }
 
 h1 {
   margin-top: 90px;
   text-align: center;
-  font-variant-caps:titling-caps  
+  font-variant-caps: titling-caps;
 }
 
 .calculator {
@@ -26,7 +25,7 @@ h1 {
   flex-direction: column;
   margin-top: 80px;
   background-color: rgb(61, 60, 60);
-  padding: 40px 25px 40px 25px;
+  padding: 35px 25px 35px 25px;
   border-radius: 15px;
 }
 
@@ -52,7 +51,7 @@ h1 {
   gap: 8px;
   flex-wrap: wrap;
   flex-basis: 75%;
-  flex:1;
+  flex: 1;
 }
 .btn-right {
   width: 25%;
@@ -69,7 +68,6 @@ button {
   color: rgb(33, 31, 31);
   font-size: 20px;
   background-color: white;
-  
 }
 
 #zero {
